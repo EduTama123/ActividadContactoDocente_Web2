@@ -10,9 +10,8 @@ export class Hero {
 
   //Los datos vacios que llamaremos en cada uso del componente
   @Input () titulo!: string;
-  @Input () negrita!: string;
   @Input () subtitulo!: string;
-  @Input () descripcion!: string;
   @Input () imagen!: string;
+  @Input () colorFondo!: string;
 
 }
