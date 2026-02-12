@@ -34,7 +34,7 @@ export class Servicios {
       activo: false
     },
   ];
-  //Varoabñe serviciosFiltrados para la busqueda
+  //Varoable serviciosFiltrados para la busqueda
   serviciosFiltrados = this.servicios;
 
   //Función para mostrar el mensaje Has mostrado interes en: (parametro)

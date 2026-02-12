@@ -10,5 +10,5 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     //Gestiona las solicitudes http, inyeccion de dependencia
     provideHttpClient()
-  ]
+  ]           
 };
