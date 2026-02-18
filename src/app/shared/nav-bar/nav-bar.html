@@ -1,67 +1,88 @@
-<nav class="bg-gradient-to-r from-emerald-500 via-emerald-400 to-emerald-300 w-full z-50 top-0 start-0 border-b border-emerald-200/50 backdrop-blur-sm bg-white/5">
-  <div class="max-w-7xl flex items-center justify-between mx-auto px-4 sm:px-6 lg:px-8 py-3">
-    <!-- Logo -->
-    <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse group">
-        <div>
-            <img src="/images/veterinario.png" class="h-8 w-8" alt="Logo Veterinaria" />
-        </div>
-        <div class="flex flex-col">
-            <span class="text-xl font-bold text-white">Veterinaria Pochita</span>
-        </div>
-    </a>
+<nav
+    class="bg-gradient-to-r from-emerald-500 via-emerald-400 to-emerald-300 w-full z-50 top-0 start-0 border-b border-emerald-200/50 backdrop-blur-sm bg-white/5">
+    <div class="max-w-7xl flex items-center justify-between mx-auto px-4 sm:px-6 lg:px-8 py-3">
+        <!-- Logo -->
+        <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse group">
+            <div>
+                <img src="/images/veterinario.png" class="h-8 w-8" alt="Logo Veterinaria" />
+            </div>
+            <div class="flex flex-col">
+                <span class="text-xl font-bold text-white">Veterinaria Pochita</span>
+            </div>
+        </a>
 
-    <div class="hidden md:flex items-center space-x-1 lg:space-x-2">
-        <a routerLink="/" class="px-4 py-2.5 text-sm font-semibold text-white rounded-lg hover:bg-white/20 transition-all duration-300 flex items-center gap-2 group" aria-current="page">
-            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
+        <div class="hidden md:flex items-center space-x-1 lg:space-x-2">
+            <a routerLink="/"
+                class="px-4 py-2.5 text-sm font-semibold text-white rounded-lg hover:bg-white/20 transition-all duration-300 flex items-center gap-2 group"
+                aria-current="page">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                        d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+                </svg>
+                Inicio
+            </a>
+            <a routerLink="/acerca"
+                class="px-4 py-2.5 text-sm font-semibold text-emerald-50 hover:text-white rounded-lg hover:bg-white/20 transition-all duration-300">
+                Acerca
+            </a>
+            <a routerLink="/consultas"
+                class="px-4 py-2.5 text-sm font-semibold text-emerald-50 hover:text-white rounded-lg hover:bg-white/20 transition-all duration-300">
+                Consultas
+            </a>
+            <a routerLink="/mascotas"
+                class="px-4 py-2.5 text-sm font-semibold text-emerald-50 hover:text-white rounded-lg hover:bg-white/20 transition-all duration-300">
+                Mascotas
+            </a>
+            <a routerLink="/usuarios"
+                class="px-4 py-2.5 text-sm font-semibold text-emerald-50 hover:text-white rounded-lg hover:bg-white/20 transition-all duration-300">
+                Registro
+            </a>
+            <a routerLink="/formulario"
+                class="px-4 py-2.5 text-sm font-semibold text-emerald-50 hover:text-white rounded-lg hover:bg-white/20 transition-all duration-300">
+                Crear Cuenta
+            </a>
+            <a routerLink="/login"
+                class="px-4 py-2.5 text-sm font-semibold text-emerald-50 hover:text-white rounded-lg hover:bg-white/20 transition-all duration-300">
+                Login
+            </a>
+            <button (click)="cerrarSesion()" type="button"
+                class="text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Cerrar
+                sesión</button>
+        </div>
+
+        <button data-collapse-toggle="navbar-default" type="button"
+            class="md:hidden inline-flex items-center justify-center p-2.5 w-12 h-12 text-sm text-white rounded-xl hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/30 transition-all duration-300"
+            aria-controls="navbar-default" aria-expanded="false">
+            <span class="sr-only">Abrir menú</span>
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
-            Inicio
-        </a>
-        <a routerLink="/acerca" class="px-4 py-2.5 text-sm font-semibold text-emerald-50 hover:text-white rounded-lg hover:bg-white/20 transition-all duration-300">
-            Acerca
-        </a>
-        <a routerLink="/consultas" class="px-4 py-2.5 text-sm font-semibold text-emerald-50 hover:text-white rounded-lg hover:bg-white/20 transition-all duration-300">
-            Consultas
-        </a>
-        <a routerLink="/mascotas" class="px-4 py-2.5 text-sm font-semibold text-emerald-50 hover:text-white rounded-lg hover:bg-white/20 transition-all duration-300">
-            Mascotas
-        </a>
-        <a routerLink="/usuarios" class="px-4 py-2.5 text-sm font-semibold text-emerald-50 hover:text-white rounded-lg hover:bg-white/20 transition-all duration-300">
-            Registro
-        </a>
-        <a routerLink="/formulario" class="px-4 py-2.5 text-sm font-semibold text-emerald-50 hover:text-white rounded-lg hover:bg-white/20 transition-all duration-300">
-            Crear Cuenta
-        </a>
-        <a routerLink="/login" class="px-4 py-2.5 text-sm font-semibold text-emerald-50 hover:text-white rounded-lg hover:bg-white/20 transition-all duration-300">
-            Login
-        </a>
+        </button>
     </div>
 
-    <button data-collapse-toggle="navbar-default" type="button" class="md:hidden inline-flex items-center justify-center p-2.5 w-12 h-12 text-sm text-white rounded-xl hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/30 transition-all duration-300" aria-controls="navbar-default" aria-expanded="false">
-        <span class="sr-only">Abrir menú</span>
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-        </svg>
-    </button>
-  </div>
-
-  <div class="hidden md:hidden" id="navbar-default">
-    <div class="px-4 pt-2 pb-4 space-y-1 bg-gradient-to-b from-emerald-500 to-emerald-400 border-t border-emerald-300/50">
-        <a href="#" class="block px-4 py-3 text-base font-semibold text-white bg-white/20 rounded-lg" aria-current="page">
-            Inicio
-        </a>
-        <a routerLink="/acerca" class="block px-4 py-3 text-base font-semibold text-emerald-50 hover:text-white rounded-lg hover:bg-white/20 transition-colors">
-            Acerca
-        </a>
-        <a href="#" class="block px-4 py-3 text-base font-semibold text-emerald-50 hover:text-white rounded-lg hover:bg-white/20 transition-colors">
-            Consultas
-        </a>
-        <a href="#" class="block px-4 py-3 text-base font-semibold text-emerald-50 hover:text-white rounded-lg hover:bg-white/20 transition-colors">
-            Mascotas
-        </a>
-        <a href="#" class="block px-4 py-3 text-base font-semibold text-emerald-50 hover:text-white rounded-lg hover:bg-white/20 transition-colors">
-            Contacto
-        </a>
+    <div class="hidden md:hidden" id="navbar-default">
+        <div
+            class="px-4 pt-2 pb-4 space-y-1 bg-gradient-to-b from-emerald-500 to-emerald-400 border-t border-emerald-300/50">
+            <a href="#" class="block px-4 py-3 text-base font-semibold text-white bg-white/20 rounded-lg"
+                aria-current="page">
+                Inicio
+            </a>
+            <a routerLink="/acerca"
+                class="block px-4 py-3 text-base font-semibold text-emerald-50 hover:text-white rounded-lg hover:bg-white/20 transition-colors">
+                Acerca
+            </a>
+            <a href="#"
+                class="block px-4 py-3 text-base font-semibold text-emerald-50 hover:text-white rounded-lg hover:bg-white/20 transition-colors">
+                Consultas
+            </a>
+            <a href="#"
+                class="block px-4 py-3 text-base font-semibold text-emerald-50 hover:text-white rounded-lg hover:bg-white/20 transition-colors">
+                Mascotas
+            </a>
+            <a href="#"
+                class="block px-4 py-3 text-base font-semibold text-emerald-50 hover:text-white rounded-lg hover:bg-white/20 transition-colors">
+                Contacto
+            </a>
+        </div>
     </div>
-  </div>
 </nav>

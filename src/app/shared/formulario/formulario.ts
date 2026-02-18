@@ -2,6 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { UsuarioServicios } from '../../services/usuario-servicios';
 import { Usuario } from '../../models/usuario';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../../services/auth-service';
 
 
 @Component({
@@ -14,6 +15,8 @@ export class Formulario {
 
   private servicioUsuario = inject(UsuarioServicios);
 
+  public servicioAuth = inject(AuthService);
+
   //metodo para renderizar el html
   listaUsuarios = signal<Usuario[]>([]);
 
@@ -24,7 +27,9 @@ export class Formulario {
   nuevoUsuario: Usuario = {
     name: '',
     email: '',
-    phone: ''
+    phone: '',
+    password: '',
+    rol: 'EMPLEADO',
   };
 
   //siempre se va a cargar la lista
@@ -73,7 +78,7 @@ export class Formulario {
   resetear() {
     this.editando = false;
     //limpiar form
-    this.nuevoUsuario = { name: '', email: '', phone: '' };
+    this.nuevoUsuario = { name: '', email: '', phone: '', password: '', rol: 'EMPLEADO' };
   }
 
   /*guardarUsuario() {
