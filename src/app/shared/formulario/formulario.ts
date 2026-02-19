@@ -1,8 +1,11 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { UsuarioServicios } from '../../services/usuario-servicios';
 import { Usuario } from '../../models/usuario';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth-service';
+import { Router } from '@angular/router';
+import { Salir } from '../../guards/auth-deactivate-guard';
+
 
 
 @Component({
@@ -11,11 +14,13 @@ import { AuthService } from '../../services/auth-service';
   templateUrl: './formulario.html',
   styleUrl: './formulario.css',
 })
-export class Formulario {
+export class Formulario implements OnInit, Salir {
 
   private servicioUsuario = inject(UsuarioServicios);
 
   public servicioAuth = inject(AuthService);
+
+  private router = inject(Router);
 
   //metodo para renderizar el html
   listaUsuarios = signal<Usuario[]>([]);
@@ -46,16 +51,19 @@ export class Formulario {
 
   //Metodo guardarUsuarios
   guardarUsuario() {
-    if (this.editando && this.nuevoUsuario.id) {
-      this.servicioUsuario.putUsuario(this.nuevoUsuario.id, this.nuevoUsuario).subscribe(() => {
-        this.obtenerUsuarios();
-        this.resetear();
-      });
-    } else {
-      this.servicioUsuario.postUsuario(this.nuevoUsuario).subscribe(() => {
-        this.obtenerUsuarios();
-        this.resetear();
-      })
+    const accion = this.editando ? 'Actualizar' : 'Registrar';
+    if (confirm(`Estas seguro de que deseas ${accion} a este usuario`)) {
+      if (this.editando && this.nuevoUsuario.id) {
+        this.servicioUsuario.putUsuario(this.nuevoUsuario.id, this.nuevoUsuario).subscribe(() => {
+          this.obtenerUsuarios();
+          this.resetear();
+        });
+      } else {
+        this.servicioUsuario.postUsuario(this.nuevoUsuario).subscribe(() => {
+          this.obtenerUsuarios();
+          this.resetear();
+        })
+      }
     }
   }
 
@@ -90,5 +98,25 @@ export class Formulario {
         this.nuevoUsuario = { name: '', email: '', phone: '' };
       })
     }*/
+
+  //Funcion para el candeactivate
+  finalizarYSalir() {
+    this.obtenerUsuarios();
+    this.resetear();
+    this.router.navigate(['/']);
+  }
+
+  //funcion para evitar salir sin guardar datos
+  permitirSalir(): boolean {
+    const DatosIntroducidos =
+      (this.nuevoUsuario.name?.trim() ?? '') !== '' ||
+      (this.nuevoUsuario.email?.trim() ?? '') !== '' ||
+      (this.nuevoUsuario.phone?.trim() ?? '') !== '';
+
+    if (this.editando || DatosIntroducidos) {
+      return confirm('Tienes cambios sin guardar en el formulario. ¿Deseas salir de todos modos?');
+    }
+    return true;
+  }
 
 }

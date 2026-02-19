@@ -7,6 +7,7 @@ import { Usuarios } from './features/usuarios/usuarios';
 import { FormularioCuenta } from './shared/formulario-cuenta/formulario-cuenta';
 import { Login } from './shared/login/login';
 import { authGuard } from './guards/auth-guard';
+import { authDeactivateGuard } from './guards/auth-deactivate-guard';
 
 export const routes: Routes = [
     //1. Ruta inicial
@@ -15,7 +16,7 @@ export const routes: Routes = [
     {path: 'acerca', component: Acerca},
     {path: 'consultas', component: Consultas},
     {path: 'mascotas', component: Mascotas},
-    {path: 'usuarios', component: Usuarios, canActivate:[authGuard]},
+    {path: 'usuarios', component: Usuarios, canActivate:[authGuard], canDeactivate: [authDeactivateGuard]},
     {path: 'formulario', component: FormularioCuenta},
     {path: 'login', component: Login},
     //FINAL
