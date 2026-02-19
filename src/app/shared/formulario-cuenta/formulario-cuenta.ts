@@ -18,8 +18,7 @@ export class FormularioCuenta {
   formCuenta = this.fb.group(
     {
       email: ['', [Validators.required, Validators.pattern(this.reglaEmail)]],
-      password: ['', [Validators.required, Validators.pattern(this.reglaPassword)]],
-      repeatPassword: ['', [Validators.required]]
+      comentario: ['', [Validators.required]]
     },
     { validators: this.validarClaves }
   )
@@ -42,8 +41,34 @@ export class FormularioCuenta {
     return false;
   }
 
-  registrar(){
-    console.log(this.formCuenta.value);
-    alert('Registro exitoso')
+  registrar() {
+    if (this.formCuenta.valid) {
+      // URLSearchParams: crea un objeto especial que formatea los datos del formulario como un url (email%juanito@gmail.com...)
+      const contenido = new URLSearchParams();
+      contenido.set('form-name', 'contacto');
+      contenido.set('email', this.formCuenta.value.email ?? '');
+      contenido.set('comentario', this.formCuenta.value.comentario ?? '');
+
+      // Promesa: Función especial de JS que se usa para hacer peticiones http a través de la red
+      fetch('/', {
+        method: 'POST',
+        // Indicar que los datos que se van a enviar están codificados como una URL no como un JSON
+        headers: { 'Content-Type': "application/x-www-form-urlencoded" },
+        // Convertir todo el objeto a una cadena de texto lista para enviarse
+        body: contenido.toString()
+      })
+        // Si la promesa se cumple
+        .then(() => {
+          alert("Enviado con éxito");
+          this.formCuenta.reset();
+        })
+        // Si la promesa no se cumple
+        .catch((error) => {
+          console.log("No se pueden enviar los datos", error);
+        });
+
+      //console.log(this.formCuenta.value);
+      //alert('Registro exitoso');
+    }
   }
 }
