@@ -4,10 +4,11 @@ import { DetalleMascota } from "../../shared/detalle-mascota/detalle-mascota";
 import { Precios } from "../../shared/precios/precios";
 import { Hero } from '../../shared/hero/hero';
 import { Testimonios } from '../../shared/testimonios/testimonios';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-consultas',
-  imports: [DetalleMascota, Precios, Testimonios],
+  imports: [DetalleMascota, Precios, Testimonios, RouterLink],
   templateUrl: './consultas.html',
   styleUrl: './consultas.css',
 })

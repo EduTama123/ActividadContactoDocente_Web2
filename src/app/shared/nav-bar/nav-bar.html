@@ -21,6 +21,7 @@
                 </svg>
                 Inicio
             </a>
+            @if (servicioAuth.sesionIniciada()) {
             <a routerLink="/acerca"
                 class="px-4 py-2.5 text-sm font-semibold text-emerald-50 hover:text-white rounded-lg hover:bg-white/20 transition-all duration-300">
                 Acerca
@@ -33,18 +34,23 @@
                 class="px-4 py-2.5 text-sm font-semibold text-emerald-50 hover:text-white rounded-lg hover:bg-white/20 transition-all duration-300">
                 Mascotas
             </a>
+            }
             <a routerLink="/usuarios"
                 class="px-4 py-2.5 text-sm font-semibold text-emerald-50 hover:text-white rounded-lg hover:bg-white/20 transition-all duration-300">
                 Registro
             </a>
+            @if (servicioAuth.sesionIniciada()) {
             <a routerLink="/formulario"
                 class="px-4 py-2.5 text-sm font-semibold text-emerald-50 hover:text-white rounded-lg hover:bg-white/20 transition-all duration-300">
                 Crear Cuenta
             </a>
+            }
+            @if (!servicioAuth.sesionIniciada()) {
             <a routerLink="/login"
                 class="px-4 py-2.5 text-sm font-semibold text-emerald-50 hover:text-white rounded-lg hover:bg-white/20 transition-all duration-300">
                 Login
             </a>
+            }
             <button (click)="cerrarSesion()" type="button"
                 class="text-white focus:ring-4 focus:outline-none font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">Cerrar
                 sesión</button>
