@@ -11,30 +11,39 @@ import { Router } from '@angular/router';
 })
 export class Login {
 
-  email: string='';
-  password: string='';
+  email: string = '';
+  password: string = '';
 
   private servicioAuth = inject(AuthService);
-
   private router = inject(Router);
 
-  //Inyectar el servicio auth para iniciar sesion
-  iniciarSesion(){
-    this.servicioAuth.login(this.email, this.password).subscribe(success =>{
-      if (success) {
-        alert('Bienvenidos al sistema');
-        this.router.navigate(['/usuarios'])
-      }else{
-        alert('Error: usuario no utenticado');
+  iniciarSesion() {
+    this.servicioAuth.login(this.email, this.password).subscribe({
+      next: (response) => {
+        console.log('Respuesta del servidor:', response); // Para debugging
+        alert('Registro exitoso');
+
+        // Verificar qué rol tiene el usuario
+        const rol = response.rol;
+        console.log('Rol del usuario:', rol);
+
+        // Redirigir según el rol
+        if (rol === 'ROLE_ADMIN') {
+          this.router.navigate(['/usuarios']);
+        } else {
+          this.router.navigate(['/']);
+        }
+      },
+      error: (error) => {
+        console.error('Error en login:', error);
+        alert('Usuario o contraseña incorrectos');
       }
     });
   }
 
-  //Inyectar el servicio auth para iniciar sesion
-  cerrarSesion(){
+  cerrarSesion() {
     this.servicioAuth.logout();
-    alert('Sesion cerrada')
-    this.router.navigate([''])
+    alert('Sesión cerrada');
+    this.router.navigate(['']);
   }
-
 }
